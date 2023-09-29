@@ -4,22 +4,31 @@ public class Calculator {
 	private float num1;
 	private float num2;
 	
-	public float add(float num1, float num2) {
+	public float add(float num1, float num2) throws Exception {
+		inputNull(num1, num2);		
 		return num1 + num2;
 	}
 	
-	public float subtract(float num1, float num2) {
+	public float subtract(float num1, float num2) throws Exception {
+		inputNull(num1, num2);	
 		return num1 - num2;
 	}
 	
 	public float divide(float num1, float num2) throws Exception {
 		if (num2 == 0)
 			throw new Exception("Il divisore non può essere 0.");
+		inputNull(num1, num2);	
 		return num1 / num2;
 	}
 	
-	public float multiply(float num1, float num2) {
+	public float multiply(float num1, float num2) throws Exception {
+		inputNull(num1, num2);	
 		return num1 * num2;
+	}
+	
+	public void inputNull(float num1, float num2) throws Exception {
+		if (Float.isNaN(num1) || Float.isNaN(num2))
+			throw new Exception("Inserire valori validi.");		
 	}
 	
 	public float getNum1() {
