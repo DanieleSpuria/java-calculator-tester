@@ -11,39 +11,41 @@ import org.junit.jupiter.api.Test;
 public class CalculatorTest {
 
 	static Calculator calc = null;
+	float r = 0;
 	
 	@BeforeAll
 	public static void beforeAll() {
 		calc = new Calculator();
 	}
-	
+		
 	@Test
 	@DisplayName("add")
 	public void addCalc() {
-		float r = calc.add(19.5f, 25.3f);	
-		assertEquals(44.8f, r);
+		try {
+			r = calc.add(1_945.565f, -2_425.89653f);				
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		assertEquals(-480.33153f, r);
 	}
 	
 	@Test
 	@DisplayName("sub")
 	public void subCalc() {
-		float r = calc.subtract(85.5f,90.8f);
+		float r = calc.subtract(-45385.78655f,96750.89668f);
 		float t = 0.001f;
-		assertEquals(-5.3f, r, t);
+		assertEquals(-142136.68323f, r, t);
 	}
 	
 	@Test
 	@DisplayName("divide")
 	public void divCalc() {
-		float r = 0;
-		
 		try {
-			r = calc.divide(45f, 23.5f);		
+			r = calc.divide(5_749_490.34343f, -3_5454.373849f);		
 		} catch (Exception e) {
 			e.getMessage();
-		}
-		
-		assertEquals(1.91489361702f, r);
+		}	
+		assertEquals(-162.165897159f, r);
 	}
 	
 	@Test
@@ -51,7 +53,7 @@ public class CalculatorTest {
 	public void divideZeroCalc() {
 		assertThrows(
 				Exception.class, 
-				() -> calc.divide(12, 0), 
+				() -> calc.divide(12f, 0), 
 				"Deve dare l'Exception con il divisore uguale a 0.");
 	}
 	
@@ -66,7 +68,7 @@ public class CalculatorTest {
 	@Test
 	@DisplayName("multiply")
 	public void multCalc() {
-		float r = calc.multiply(2_236.5772f, 9_650.987f);
+		r = calc.multiply(2_236.5772f, 9_650.987f);
 		assertEquals(21_585_177.4817f, r);
 	}
 }
